@@ -2,16 +2,22 @@
 {
   "name": "react-native-toast-native",
   "version": "1.0.0",
-  "description": "",
+  "description": "Native toast for react-native. In Android it's just native toast, in iOS it's https://github.com/scalessec/Toast",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "native",
+    "toast"
   ],
-  "author": "",
-  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onemolegames/react-native-toast-native"
+  },
+  "author": "yasemincidem",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2",
     "react-native-windows": "0.41.0-rc.1"
