@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-toast-native",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Native toast for react-native. In Android it's just native toast, in iOS it's https://github.com/scalessec/Toast",
   "main": "index.js",
   "scripts": {
