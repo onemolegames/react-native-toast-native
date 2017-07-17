@@ -1,23 +1,23 @@
 import {NativeModules,ToastAndroid,Platform} from 'react-native';
 
-var RCTToastAndroid = Platform.OS === 'android' ? ToastAndroid : NativeModules.RNToastNative;
+var ToastAndroid = Platform.OS === 'android' ? ToastAndroid : NativeModules.RNToastNative;
 
 var ToastNative = {
     // Toast duration constants
-    SHORT: RCTToastAndroid.SHORT,
-    LONG: RCTToastAndroid.LONG,
+    SHORT: ToastAndroid.SHORT,
+    LONG: ToastAndroid.LONG,
 
     // Toast gravity constants
-    TOP: RCTToastAndroid.TOP,
-    BOTTOM: RCTToastAndroid.BOTTOM,
-    CENTER: RCTToastAndroid.CENTER,
+    TOP: ToastAndroid.TOP,
+    BOTTOM: ToastAndroid.BOTTOM,
+    CENTER: ToastAndroid.CENTER,
 
     show: function (
         message,
         duration,
         customStyle
     ) {
-        RCTToastAndroid.show(message, duration === undefined ? this.SHORT : duration,customStyle);
+        ToastAndroid.show(message, duration === undefined ? this.SHORT : duration,customStyle);
     },
 
     showWithGravity: function (
@@ -26,7 +26,7 @@ var ToastNative = {
         gravity,
         customStyle
     ) {
-        RCTToastAndroid.showWithGravity(message, duration === undefined ? this.SHORT : duration, customStyle, gravity);
+        ToastAndroid.showWithGravity(message, duration === undefined ? this.SHORT : duration, customStyle, gravity);
     },
 };
 
