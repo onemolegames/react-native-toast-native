@@ -14,13 +14,13 @@ if(Platform.OS === "android"){
 }else{
     var ToastNative = {
         // Toast duration constants
-        SHORT: RCTToastAndroid.SHORT,
-        LONG: RCTToastAndroid.LONG,
+        SHORT: NativeModules.RNToastNative.SHORT,
+        LONG: NativeModules.RNToastNative.LONG,
 
         // Toast gravity constants
-        TOP: RCTToastAndroid.TOP,
-        BOTTOM: RCTToastAndroid.BOTTOM,
-        CENTER: RCTToastAndroid.CENTER,
+        TOP: NativeModules.RNToastNative.TOP,
+        BOTTOM: NativeModules.RNToastNative.BOTTOM,
+        CENTER: NativeModules.RNToastNative.CENTER,
 
         show: function (
             message,
