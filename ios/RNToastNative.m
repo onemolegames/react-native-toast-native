@@ -61,8 +61,8 @@ RCT_EXPORT_MODULE()
              };
 }
 
-RCT_EXPORT_METHOD(show:(NSString *)msg duration:(double)duration customStyle:(NSDictionary *)customStyle {
-    [self _show:msg duration:duration customStyle:customStyle gravity:RNToastNativeGravityBottom];
+RCT_EXPORT_METHOD(show:(NSString *)msg duration:(double)duration customStyle:(NSDictionary *)customStyle gravity:(nonnull NSNumber *)gravity {
+    [self _show:msg duration:duration customStyle:customStyle gravity:gravity.intValue];
 });
 
 RCT_EXPORT_METHOD(showWithGravity:(NSString *)msg duration:(double)duration customStyle:(NSDictionary *)customStyle gravity:(nonnull NSNumber *)gravity{

@@ -1,44 +1,23 @@
-import {NativeModules,ToastAndroid,Platform} from 'react-native';
+import {NativeModules, ToastAndroid, Platform} from "react-native";
 
-if(Platform.OS === "android"){
-    var ToastNative = {
-        show: function (
-            message,
-            duration,
-            position,
-            styles
-        ) {
-            NativeModules.Toast.show(message, duration,position,styles);
-        }
-    };
-}else{
-    var ToastNative = {
-        // Toast duration constants
-        SHORT: NativeModules.RNToastNative.SHORT,
-        LONG: NativeModules.RNToastNative.LONG,
+var RCTToastAndroid = Platform.OS === 'android' ? NativeModules.Toast : NativeModules.RNToastNative;
 
-        // Toast gravity constants
-        TOP: NativeModules.RNToastNative.TOP,
-        BOTTOM: NativeModules.RNToastNative.BOTTOM,
-        CENTER: NativeModules.RNToastNative.CENTER,
+var ToastNative = {
+    //Toast duration constants
+    SHORT: RCTToastAndroid.SHORT,
+    LONG: RCTToastAndroid.LONG,
 
-        show: function (
-            message,
-            duration,
-            customStyle
-        ) {
-            NativeModules.RNToastNative.show(message, duration === undefined ? this.SHORT : duration,customStyle);
-        },
+    // Toast gravity constants
+    TOP: RCTToastAndroid.TOP,
+    BOTTOM: RCTToastAndroid.BOTTOM,
+    CENTER: RCTToastAndroid.CENTER,
 
-        showWithGravity: function (
-            message,
-            duration,
-            gravity,
-            customStyle
-        ) {
-            NativeModules.RNToastNative.showWithGravity(message, duration === undefined ? this.SHORT : duration, customStyle, gravity);
-        },
-    };
-}
+    show: function (message,
+                    duration,
+                    styles,
+                    position,) {
+        RCTToastAndroid.show(message, duration, position, styles);
+    }
+};
 
 export default ToastNative;
