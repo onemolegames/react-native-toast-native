@@ -14,9 +14,17 @@ import android.widget.TextView;
 import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Toast extends ReactContextBaseJavaModule implements LifecycleEventListener {
+    private static final String DURATION_SHORT_KEY = "SHORT";
+    private static final String DURATION_LONG_KEY = "LONG";
+
+    private static final String POSITION_TOP_KEY = "TOP";
+    private static final String POSITION_CENTER_KEY = "CENTER";
+    private static final String POSITION_BOTTOM_KEY = "BOTTOM";
 
     private android.widget.Toast mostRecentToast;
 
@@ -33,7 +41,7 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
     }
 
     @ReactMethod
-    public void show(final String message, final int duration, final String position, ReadableMap styles) throws Exception {
+    public void show(final String message, final int duration, ReadableMap styles, final int position) throws Exception {
 
         if (this.isPaused) {
             return;
@@ -42,50 +50,47 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
         final String color = styles.hasKey("color") ? styles.getString("color") : "#ffffff";
         final int width = styles.hasKey("width") ? styles.getInt("width") : 50;
         final int height = styles.hasKey("height") ? styles.getInt("height") : 50;
-        final int paddingLeft = styles.hasKey("paddingLeft") ? styles.getInt("paddingLeft") : 10;
-        final int paddingRight = styles.hasKey("paddingRight") ? styles.getInt("paddingRight") : 10;
-        final int paddingTop = styles.hasKey("paddingTop") ? styles.getInt("paddingTop") : 5;
-        final int paddingBottom = styles.hasKey("paddingBottom") ? styles.getInt("paddingTop") : 5;
+        final int paddingLeft = styles.hasKey("paddingLeft") ? styles.getInt("paddingLeft") : 0;
+        final int paddingRight = styles.hasKey("paddingRight") ? styles.getInt("paddingRight") : 0;
+        final int paddingTop = styles.hasKey("paddingTop") ? styles.getInt("paddingTop") : 0;
+        final int paddingBottom = styles.hasKey("paddingBottom") ? styles.getInt("paddingTop") : 0;
         final int fontSize = styles.hasKey("fontSize") ? styles.getInt("fontSize") : 12;
         final int lineHeight = styles.hasKey("lineHeight") ? styles.getInt("lineHeight") : 10;
-        final int cornerRadius = styles.hasKey("cornerRadius") ? styles.getInt("cornerRadius") : 10;
+        final int cornerRadius = styles.hasKey("borderRadius") ? styles.getInt("borderRadius") : 5;
         final int lines = styles.hasKey("lines") ? styles.getInt("lines") : 3;
-        final float letterSpacing = styles.hasKey("letterSpacing") ? (float)styles.getDouble("letterSpacing") : 0;
-
+        final int borderWidth = styles.hasKey("borderWidth") ? styles.getInt("borderWidth") : 2;
+        final int xOffset = styles.hasKey("xOffset") ? styles.getInt("xOffset") : 0;
+        final int yOffset = styles.hasKey("yOffset") ? styles.getInt("yOffset") : 0;
+        final float letterSpacing = styles.hasKey("letterSpacing") ? (float) styles.getDouble("letterSpacing") : 0;
+        final String fontWeight = styles.hasKey("fontWeight") ? styles.getString("fontWeight") : "default";
         UiThreadUtil.runOnUiThread(new Runnable() {
             public void run() {
                 android.widget.Toast toast = android.widget.Toast.makeText(
                         getReactApplicationContext(),
                         message,
-                        "short".equals(duration) ? android.widget.Toast.LENGTH_SHORT : android.widget.Toast.LENGTH_LONG);
+                        duration);
                 View view = toast.getView();
                 TextView text = (TextView) view.findViewById(android.R.id.message);
                 GradientDrawable gd = new GradientDrawable();
-                view.setBackgroundColor(Color.parseColor(backgroundColor));
-                view.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
-                view.setMinimumHeight(height);
-                view.setMinimumWidth(width);
+                gd.setStroke(borderWidth, Color.parseColor(backgroundColor));
+                gd.setColor(Color.parseColor(backgroundColor));
+                gd.setCornerRadius(cornerRadius);
+                gd.setSize(width, height);
+                view.setBackground(gd);
                 text.setTextSize(fontSize);
                 text.setLines(lines);
                 text.setMaxLines(lines);
                 text.setHeight(lineHeight);
                 text.setLetterSpacing(letterSpacing);
                 text.setTypeface(Typeface.SANS_SERIF);
-                gd.setStroke(2, Color.parseColor(backgroundColor));
-                gd.setColor(Color.parseColor(backgroundColor));
-                gd.setCornerRadius(cornerRadius);
-                view.setBackground(gd);
-                if ("top".equals(position)) {
-                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 20);
-                } else if ("bottom".equals(position)) {
-                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 20);
-                } else if ("center".equals(position)) {
-                    toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 20);
-                } else {
-                    FLog.e("RCTToast", "invalid position. valid options are 'top', 'center' and 'bottom'");
-                    return;
+                text.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+                if(fontWeight.equals("bold")){
+                    text.setTypeface(Typeface.DEFAULT_BOLD);
+                }else{
+                    text.setTypeface(Typeface.DEFAULT);
                 }
                 toast.setView(view);
+                toast.setGravity(position, xOffset, yOffset);
                 toast.show();
                 mostRecentToast = toast;
             }
@@ -97,6 +102,17 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
         if (mostRecentToast != null) {
             mostRecentToast.cancel();
         }
+    }
+
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+        constants.put(DURATION_SHORT_KEY, android.widget.Toast.LENGTH_SHORT);
+        constants.put(DURATION_LONG_KEY, android.widget.Toast.LENGTH_LONG);
+        constants.put(POSITION_TOP_KEY, Gravity.TOP);
+        constants.put(POSITION_CENTER_KEY, Gravity.CENTER);
+        constants.put(POSITION_BOTTOM_KEY, Gravity.BOTTOM);
+        return constants;
     }
 
     @Override
