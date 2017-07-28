@@ -3,6 +3,10 @@
 # react-native-toast-native
   React Native Toast component for both Android and iOS. It just let iOS have the same toast performance with Android. Using [scalessec/Toast](https://github.com/scalessec/Toast) for iOS;
 
+     
+## Demo:
+  ![](test.gif)
+
 ## Getting started
 
 `$ npm install react-native-toast-native --save`
@@ -108,4 +112,4 @@
   
  
   ```
-   
+
