@@ -77,6 +77,7 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
                 gd.setCornerRadius(cornerRadius);
                 gd.setSize(width, height);
                 view.setBackground(gd);
+                text.setTextColor(Color.parseColor(color));
                 text.setTextSize(fontSize);
                 text.setLines(lines);
                 text.setMaxLines(lines);
