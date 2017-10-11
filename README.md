@@ -47,9 +47,28 @@
   ```javascript
   import Toast from 'react-native-toast-native';
   
-  Toast.show('This is a toast.');
-  Toast.show('This is a long toast.',Toast.LONG);
+  Toast.show(); // Default toast message is shown.
+  Toast.show('This is a toast.'); // Specific message is shown with default duration("SHORT") and poistion("TOP") and styles.
+  Toast.show('This is a long toast.',Toast.LONG); //Specific message and duration are shown with default position and styles.
   ```
+  You want to make customizable through style objects.You must give required parameters to this show method like following 
+  example:
+   ```javascript
+  import Toast from 'react-native-toast-native';
+    const styles={
+                    width,
+                    height,
+                    backgroundColor,
+                    color,
+                    borderWidth,
+                    borderColor,
+                    borderRadius
+    }
+
+  ```
+   Toast.show('This is a long toast.',Toast.SHORT,Toast.TOP,styles); // Customizable toast message is shown with specific 
+    message,duration and position.
+    
   ## Options
   
   Toast was been able to make customizable through these properties
