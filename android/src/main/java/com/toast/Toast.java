@@ -41,15 +41,15 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
     }
 
     @ReactMethod
-    public void show(final String message, final int duration, ReadableMap styles, final int position) throws Exception {
+    public void show(final String message, final int duration, final int position, ReadableMap styles) throws Exception {
 
         if (this.isPaused) {
             return;
         }
         final String backgroundColor = styles.hasKey("backgroundColor") ? styles.getString("backgroundColor") : "#000000";
         final String color = styles.hasKey("color") ? styles.getString("color") : "#ffffff";
-        final int width = styles.hasKey("width") ? styles.getInt("width") : 50;
-        final int height = styles.hasKey("height") ? styles.getInt("height") : 50;
+        final int width = styles.hasKey("width") ? styles.getInt("width") : 100;
+        final int height = styles.hasKey("height") ? styles.getInt("height") : 100;
         final int paddingLeft = styles.hasKey("paddingLeft") ? styles.getInt("paddingLeft") : 0;
         final int paddingRight = styles.hasKey("paddingRight") ? styles.getInt("paddingRight") : 0;
         final int paddingTop = styles.hasKey("paddingTop") ? styles.getInt("paddingTop") : 0;

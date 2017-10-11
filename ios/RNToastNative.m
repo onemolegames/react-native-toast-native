@@ -95,7 +95,7 @@ RCT_EXPORT_METHOD(showWithGravity:(NSString *)msg duration:(double)duration cust
     return [self visibleViewController:presentedViewController];
 }
 
-- (void)_show:(NSString *)msg duration:(NSTimeInterval)duration customStyle:(NSDictionary *)customStyle gravity:(NSInteger)gravity {
+- (void)_show:(NSString *)msg duration:(NSTimeInterval)duration gravity:(NSInteger)gravity customStyle:(NSDictionary *)customStyle {
     dispatch_async(dispatch_get_main_queue(), ^{
         //UIView *root = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] view];
         UIViewController *ctrl = [self visibleViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
