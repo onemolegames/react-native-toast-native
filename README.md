@@ -64,10 +64,11 @@
                     borderColor,
                     borderRadius
     }
-
-  ```
-   Toast.show('This is a long toast.',Toast.SHORT,Toast.TOP,styles); // Customizable toast message is shown with specific 
+    
+    Toast.show('This is a long toast.',Toast.SHORT,Toast.TOP,styles); // Customizable toast message is shown with specific 
     message,duration and position.
+  ```
+   
     
   ## Options
   
