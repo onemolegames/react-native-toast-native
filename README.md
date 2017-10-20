@@ -1,7 +1,7 @@
   [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/onemolegames/onemolegames)
 
 # react-native-toast-native
-  React Native Toast component for both Android and iOS. It just let iOS have the same toast performance with Android. Using [scalessec/Toast](https://github.com/scalessec/Toast) for iOS;
+  React Native Toast is a toast component for both Android and iOS. it uses [scalessec/Toast](https://github.com/scalessec/Toast) for iOS;
 
      
 ## Demo:
@@ -51,7 +51,7 @@
   Toast.show('This is a toast.'); // Specific message is shown with default duration("SHORT") and poistion("TOP") and styles.
   Toast.show('This is a long toast.',Toast.LONG); //Specific message and duration are shown with default position and styles.
   ```
-  You want to make customizable through style objects.You must give required parameters to this show method like following 
+  It is higly customasible. Just provide a style object as a parameter.
   example:
    ```javascript
   import Toast from 'react-native-toast-native';
@@ -71,9 +71,7 @@
    
     
   ## Options
-  
-  Toast was been able to make customizable through these properties
-   You can make customizable all of them or some of them or you can use default toast style.
+ You can style the toast with below options;
   Android:
   ```javascript
   {
