@@ -77,18 +77,22 @@ public class Toast extends ReactContextBaseJavaModule implements LifecycleEventL
                 gd.setCornerRadius(cornerRadius);
                 gd.setSize(width, height);
                 view.setBackground(gd);
-                text.setTextColor(Color.parseColor(color));
-                text.setTextSize(fontSize);
-                text.setLines(lines);
-                text.setMaxLines(lines);
-                text.setHeight(lineHeight);
-                text.setLetterSpacing(letterSpacing);
-                text.setTypeface(Typeface.SANS_SERIF);
-                text.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
-                if(fontWeight.equals("bold")){
-                    text.setTypeface(Typeface.DEFAULT_BOLD);
-                }else{
-                    text.setTypeface(Typeface.DEFAULT);
+                try{
+                    text.setTextColor(Color.parseColor(color));
+                    text.setTextSize(fontSize);
+                    text.setLines(lines);
+                    text.setMaxLines(lines);
+                    text.setHeight(lineHeight);
+                    text.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+                    text.setTypeface(Typeface.SANS_SERIF);
+                    if(fontWeight.equals("bold")){
+                        text.setTypeface(Typeface.DEFAULT_BOLD);
+                    }else{
+                        text.setTypeface(Typeface.DEFAULT);
+                    }
+                    text.setLetterSpacing(letterSpacing);
+                } catch (NoSuchMethodError e) {
+                     // ignore
                 }
                 toast.setView(view);
                 toast.setGravity(position, xOffset, yOffset);
