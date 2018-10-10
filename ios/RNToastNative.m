@@ -19,6 +19,11 @@ NSInteger const RNToastNativeGravityTop = 3;
     CGFloat _keyOffset;
 }
 
+// Fix: RNToastNative has a warning [requiresMainQueueSetup]
++ (BOOL) requiresMainQueueSetup {
+    return YES;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         _keyOffset = 0;
