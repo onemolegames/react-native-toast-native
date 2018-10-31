@@ -51,6 +51,10 @@ NSInteger const RNToastNativeGravityTop = 3;
 
 RCT_EXPORT_MODULE()
 
++ (BOOL)requiresMainQueueSetup {
+    return NO;
+}
+
 - (NSDictionary *)constantsToExport {
     return @{
              @"SHORT": [NSNumber numberWithDouble:RNToastNativeShortDuration],
