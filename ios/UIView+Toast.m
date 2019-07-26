@@ -203,6 +203,7 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
     UILabel *titleLabel = nil;
     UIImageView *imageView = nil;
     UIColor *textColor;
+    UIFont *messageFont = nil;
     struct CGColor *borderColor=nil;
     struct CGColor *backgroundColor=nil;
     float borderWidth=1.0;
@@ -261,6 +262,9 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
     if(customStyle && !customStyle[@"color"]){
         textColor=style.messageColor;
     }
+    if(customStyle && customStyle[@"fontSize"]){
+        messageFont=[UIFont systemFontOfSize:[customStyle[@"fontSize"] floatValue]];
+    }
     if(customStyle && customStyle[@"borderColor"]){
         borderColor=[self stringColorConvertoUIColor:customStyle[@"borderColor"]].CGColor;
     }
@@ -295,11 +299,12 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
         borderWidth=0;
         borderRadius=0;
         backgroundColor=style.backgroundColor.CGColor;
+        messageFont = [UIFont systemFontOfSize:16.0];
     }
     if (message != nil) {
         messageLabel=[[UILabel alloc] init];
         messageLabel.numberOfLines = style.messageNumberOfLines;
-        messageLabel.font = style.messageFont;
+        messageLabel.font = messageFont;
         messageLabel.textAlignment =style.messageAlignment;
         messageLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         messageLabel.textColor =textColor;

@@ -108,7 +108,8 @@ pod 'RNToastNative', :path => '../node_modules/react-native-toast-native/ios`
                     color,
                     borderWidth,
                     borderColor,
-                    borderRadius
+                    borderRadius,
+                    fontSize
     }
     
 ```
