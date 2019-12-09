@@ -18,6 +18,13 @@
 ### Manual installation
 
 
+#### iOS (CocoaPods)
+
+Add the following to your podfile:
+```
+pod 'RNToastNative', :path => '../node_modules/react-native-toast-native/ios`
+```
+
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
