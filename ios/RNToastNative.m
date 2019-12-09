@@ -19,6 +19,10 @@ NSInteger const RNToastNativeGravityTop = 3;
     CGFloat _keyOffset;
 }
 
++ (BOOL) requiresMainQueueSetup {
+Return YES;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         _keyOffset = 0;
