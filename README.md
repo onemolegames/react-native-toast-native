@@ -63,13 +63,13 @@ pod 'RNToastNative', :path => '../node_modules/react-native-toast-native/ios`
    ```javascript
   import Toast from 'react-native-toast-native';
     const styles={
-                    width,
-                    height,
-                    backgroundColor,
-                    color,
-                    borderWidth,
-                    borderColor,
-                    borderRadius
+      width,
+      height,
+      backgroundColor,
+      color,
+      borderWidth,
+      borderColor,
+      borderRadius
     }
     
     Toast.show('This is a long toast.',Toast.SHORT,Toast.TOP,styles); 
@@ -81,35 +81,35 @@ pod 'RNToastNative', :path => '../node_modules/react-native-toast-native/ios`
  You can style the toast with below options;
   Android:
   ```javascript
-  {
-                width,
-                height,
-                backgroundColor,
-                color,
-                borderWidth,
-                paddingLeft,
-                paddingRight,
-                paddingBottom,
-                paddingTop,
-                fontSize,
-                lineHeight,
-                xOffset,
-                yOffset,
-                letterSpacing,
-                fontWeight
-  }
+{
+  width,
+  height,
+  backgroundColor,
+  color,
+  borderWidth,
+  paddingLeft,
+  paddingRight,
+  paddingBottom,
+  paddingTop,
+  fontSize,
+  lineHeight,
+  xOffset,
+  yOffset,
+  letterSpacing,
+  fontWeight
+}
   ```
   Ios:
   ```javascript
-    {
-                    width,
-                    height,
-                    backgroundColor,
-                    color,
-                    borderWidth,
-                    borderColor,
-                    borderRadius
-    }
+{
+  width,
+  height,
+  backgroundColor,
+  color,
+  borderWidth,
+  borderColor,
+  borderRadius
+}
     
 ```
     
@@ -119,22 +119,20 @@ pod 'RNToastNative', :path => '../node_modules/react-native-toast-native/ios`
   #### Example usage:
   
   ```javascript
-  import Toast from 'react-native-toast-native';
-  import {Platform} from 'react-native';
-  const style={
-                               backgroundColor: "#4ADDFB",
-                               width: 300,
-                               height: Platform.OS === ("ios") ? 50 : 100,
-                               color: "#ffffff",
-                               fontSize: 15,
-                               lineHeight: 2,
-                               lines: 4,
-                               borderRadius: 15,
-                               fontWeight: "bold",
-                               yOffset: 40
-                           };
-    Toast.show(message, Toast.SHORT, Toast.TOP,style);
-  
- 
+import Toast from 'react-native-toast-native';
+import {Platform} from 'react-native';
+const style={
+    backgroundColor: "#4ADDFB",
+    width: 300,
+    height: Platform.OS === ("ios") ? 50 : 100,
+    color: "#ffffff",
+    fontSize: 15,
+    lineHeight: 2,
+    lines: 4,
+    borderRadius: 15,
+    fontWeight: "bold",
+    yOffset: 40
+  };
+  Toast.show(message, Toast.SHORT, Toast.TOP,style);
   ```
 
